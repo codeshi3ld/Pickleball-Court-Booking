@@ -96,7 +96,7 @@ async function acceptTerms() {
       formData.append("screenshot", file);
     }
 
-    const res = await fetch("http://localhost:3000/book", {
+    const res = await fetch("https://pickleball-court-backend.onrender.com/book", {
       method: "POST",
       body: formData
     });
@@ -107,7 +107,7 @@ async function acceptTerms() {
       throw new Error(data.message);
     }
 
-// 👉 IBUTANG NI DIRI
+// 👉 PUT THIS HERE
 const bookingId =
   "BK-" +
   Math.floor(100000 + Math.random() * 900000);
