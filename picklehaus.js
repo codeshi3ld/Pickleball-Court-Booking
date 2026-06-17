@@ -166,7 +166,7 @@ LOAD BOOKINGS FROM BACKEND (MONGODB)
 async function loadBookingsFromServer() {
   try {
 
-    const res = await fetch("http://localhost:3000/bookings");
+    const res = await fetch("https://pickleball-court-backend.onrender.com/bookings");
     const data = await res.json();
 
     console.log("BOOKINGS FROM DB:", data); // 🔥 optional debug
