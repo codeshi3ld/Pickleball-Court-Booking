@@ -1,4 +1,3 @@
-
 // =========================================
 // START: TERMS SCROLL VALIDATION
 // =========================================
@@ -10,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("btn =", btn);
   console.log("box =", box);
 
+  // Disable agree button initially until user scrolls to bottom
   btn.disabled = true;
 
   box.addEventListener("scroll", () => {
@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (bottom) {
       btn.disabled = false;
-      btn.onclick = acceptTerms; // FIXED (no duplicate listeners)
+
+      // Attach acceptTerms function when user reaches bottom
+      btn.onclick = acceptTerms;
     }
 
   });
@@ -35,9 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // START: DECLINE TERMS FUNCTION
 // =========================================
 function declineTerms() {
+
+  // Clear stored booking data
   localStorage.removeItem("bookingData");
   localStorage.removeItem("bookingId");
 
+  // Redirect user back to booking page
   window.location.href = "picklehaus.html";
 }
 // =========================================
@@ -50,6 +55,7 @@ function declineTerms() {
 // =========================================
 async function acceptTerms() {
 
+  // Get pending booking data from localStorage
   const payload = JSON.parse(localStorage.getItem("pendingBooking"));
 
   if (!payload) {
@@ -59,15 +65,20 @@ async function acceptTerms() {
 
   try {
 
+    // Show loading spinner
     document.getElementById("loadingSpinner").style.display = "block";
+
+    // Disable buttons to prevent multiple submissions
     document.querySelector(".agree").disabled = true;
     document.querySelector(".decline").disabled = true;
 
+    // Simulate loading delay
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // ✔ GET FILE FROM SESSION STORAGE (FIXED)
+    // Get payment screenshot from sessionStorage
     const dataURL = sessionStorage.getItem("paymentScreenshot");
 
+    // Convert base64 dataURL to File object
     const dataURLtoFile = (dataurl, filename) => {
       const arr = dataurl.split(',');
       const mime = arr[0].match(/:(.*?);/)[1];
@@ -82,8 +93,10 @@ async function acceptTerms() {
       return new File([u8arr], filename, { type: mime });
     };
 
+    // Create file object if screenshot exists
     const file = dataURL ? dataURLtoFile(dataURL, "payment.jpg") : null;
 
+    // Create FormData for backend request
     const formData = new FormData();
 
     formData.append("name", payload.name);
@@ -92,10 +105,12 @@ async function acceptTerms() {
     formData.append("date", payload.date);
     formData.append("slots", JSON.stringify(payload.slots));
 
+    // Attach screenshot file if available
     if (file) {
       formData.append("screenshot", file);
     }
 
+    // Send booking request to backend
     const res = await fetch("https://pickleball-court-backend.onrender.com/book", {
       method: "POST",
       body: formData
@@ -103,29 +118,39 @@ async function acceptTerms() {
 
     const data = await res.json();
 
+    // Handle backend failure response
     if (!data.success) {
       throw new Error(data.message);
     }
 
-// 👉 PUT THIS HERE
-const bookingId =
-  "BK-" +
-  Math.floor(100000 + Math.random() * 900000);
+    // Generate booking ID for UI display only
+    const bookingId =
+      "BK-" +
+      Math.floor(100000 + Math.random() * 900000);
 
-localStorage.setItem("bookingId", bookingId);
+    // Store booking ID locally
+    localStorage.setItem("bookingId", bookingId);
 
-sessionStorage.removeItem("paymentScreenshot");
+    // Clear payment screenshot after successful booking
+    sessionStorage.removeItem("paymentScreenshot");
 
-window.location.href = "submitted.html";
+    // Redirect to success page
+    window.location.href = "submitted.html";
 
   } catch (err) {
 
     console.error(err);
 
+    // Hide loading spinner on error
     document.getElementById("loadingSpinner").style.display = "none";
+
+    // Re-enable buttons
     document.querySelector(".agree").disabled = false;
     document.querySelector(".decline").disabled = false;
 
     alert("Server error or booking failed");
   }
 }
+// =========================================
+// END: ACCEPT TERMS AND SUBMIT BOOKING
+// =========================================
