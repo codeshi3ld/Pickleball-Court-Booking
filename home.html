@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Page Title -->
+  <title>Dinktøpia</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER SECTION
+  ========================== -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+
+        <!-- Logo -->
+        <a href="home.html" class="logo">
+          Dinktøpia
+        </a>
+
+        <!-- Hamburger Button -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <!-- Menu -->
+        <div class="menu" id="menu">
+          <a href="performancestats.html">Performance Stats</a>
+          <a href="comingsoon.html">List Your Venue</a>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right-links">
+          <a href="comingsoon.html" class="btn">Sign In</a>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+  <section class="hero container">
+
+    <!-- Hero Text -->
+    <h1>Discover Your Court</h1>
+
+    <p>
+      Your hub for sports venue reservations in the Philippines
+    </p>
+
+    <div class="hero-controls">
+
+      <!-- Search Box -->
+      <div class="search-container">
+
+        <input class="search" type="text" id="searchInput" placeholder="Search items..."
+          onkeypress="handleKey(event)" />
+
+        <button class="search-btn" aria-label="Search"
+          onclick="searchItems(); document.getElementById('searchInput').value=''">
+          Enter
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       VENUES SECTION
+  ========================== -->
+  <section class="container">
+
+    <!-- NO RESULTS MESSAGE -->
+    <div id="noResults" class="no-results">
+      ❌ No locations found.
+    </div>
+
+    <div class="venues">
+
+      <!-- =========================
+           VENUE CARD 1
+      ========================== -->
+      <div class="venue-card">
+
+        <!-- Venue Image -->
+        <div class="image-wrapper">
+          <img src="./images/pickle.png" alt="CDO Racket Club">
+        </div>
+
+        <!-- Venue Content -->
+        <div class="content">
+
+          <!-- Title and Logo -->
+          <div class="title-row">
+
+            <img class="venue-logo" src="./images/dinktopia.jpg" alt="Venue Logo">
+
+            <div>
+              <h3>Dinktøpia</h3>
+
+              <!-- Status Badges -->
+              <div class="badges">
+
+                <span class="available-badge">
+                  ● Available
+                </span>
+
+                <span class="verified-badge">
+                  ✔ Verified
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Venue Location -->
+          <p class="location">
+            📍 Tubaran, Tubod<br>
+            Lanao Del Norte
+          </p>
+
+          <!-- Court Information -->
+          <div class="court-info">
+            🏆 1 Court
+            <span class="mini-tag">⭐ Top Choice</span>
+          </div>
+
+          <!-- Pricing -->
+          <p class="price">
+            ₱199/hr
+          </p>
+
+          <!-- Venue Tags -->
+          <div class="tags">
+            <span class="tag">Convenient Location</span>
+            <span class="tag">Player-Friendly</span>
+            <span class="tag">Easy Booking</span>
+          </div>
+
+          <!-- Booking Button -->
+          <a href="picklehaus.html" class="book-btn">
+            Check Details & Book
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       COMING SOON SECTION
+  ========================== -->
+  <section class="coming-soon-section">
+    <h1 class="coming-soon-text">
+      COMING SOON
+    </h1>
+  </section>
+
+  <!-- CAROUSEL -->
+  <div class="carouselWrapper">
+
+    <!-- TOP -->
+    <img src="./images/comingsoon1.png" class="pic top">
+    <img src="./images/comingsoon2.png" class="pic top">
+    <img src="./images/comingsoon3.png" class="pic top">
+    <img src="./images/comingsoon4.png" class="pic top">
+    <img src="./images/comingsoon5.png" class="pic top">
+    <img src="./images/comingsoon6.png" class="pic top">
+    <img src="./images/comingsoon7.png" class="pic top">
+    <img src="./images/comingsoon8.png" class="pic top">
+    <img src="./images/comingsoon9.png" class="pic top">
+    <img src="./images/comingsoon10.png" class="pic top">
+
+    <!-- BOTTOM -->
+    <img src="./images/comingsoon1.png" class="pic bottom">
+    <img src="./images/comingsoon2.png" class="pic bottom">
+    <img src="./images/comingsoon3.png" class="pic bottom">
+    <img src="./images/comingsoon4.png" class="pic bottom">
+    <img src="./images/comingsoon5.png" class="pic bottom">
+    <img src="./images/comingsoon6.png" class="pic bottom">
+    <img src="./images/comingsoon7.png" class="pic bottom">
+    <img src="./images/comingsoon8.png" class="pic bottom">
+    <img src="./images/comingsoon9.png" class="pic bottom">
+    <img src="./images/comingsoon10.png" class="pic bottom">
+
+  </div>
+
+  <!-- =========================
+       FOOTER SECTION
+  ========================== -->
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <!-- Footer About -->
+        <div class="footer-about">
+
+          <div class="footer-logo">
+            <div class="logo-icon">🏆</div>
+            <h2>Dinktøpia</h2>
+          </div>
+
+          <p>
+            The Philippines’ trusted platform for seamless
+            sports venue bookings making court reservations
+            faster easier and more convenient for everyone.
+          </p>
+
+          <div class="socials">
+
+            <a href="https://www.facebook.com/jaztene08ol" target="_blank" class="fb">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@rodcil?_r=1&_d=secCgYIASAHKAESPgo8UAjsO3r%2FC%2BWbNdrq1%2FkiEicRn5uBVjI7gT1kXtFDWeToFxL3RiJAgAJxI192Im2DhPDmbUwr4ACwY0FNGgA%3D&_svg=1&checksum=2a391c45753318640acb84fa9011d2f11e31b12d9527c4c8a997a02c0bf1f354&item_author_type=2&reflow_sign_scene=7&rgssign=8.1.HItNQMnZQ48iMxWjp5Ku4w&sec_uid=MS4wLjABAAAAyTiHe16VCj5_s7b8kHk-SCJ31KpTGuiBToXhYA7tOQrbqHjQZ7RkQ-9DB6mmMRaM&sec_user_id=MS4wLjABAAAAkxxpNTupz3dKQOMQ0dN0WQOtUHarXhE6lHypOLm4kw4htVw3ws0dB0r4fgXY7iKX&share_app_id=1180&share_author_id=6951373389303022593&share_link_id=675eef15-88ef-48f7-8709-95bdafb4f319&share_region=PH&share_scene=1&sharer_language=en&social_share_type=5&source=h5_t&timestamp=1779100248&u_code=el4069a17332h8&ug_btm=b6880%2Cb5836&ugbiz_name=ACCOUNT&user_id=7520538965171684359&utm_campaign=client_share&utm_medium=android&utm_source=copy"
+              target="_blank" class="tiktok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+
+            <a href="https://www.instagram.com/onlyheavenknows20/" target="_blank" class="ig">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://mail.google.com/mail/u/0/#inbox?compose=prDfqJrXdLQmQDZZZqtKFlTrRsWncVPsXVRNfLgXsgDrVKPrNGKpFPWCfSNFpfgstmZlJcvGFRHwkMcwjxXTZkTgXxHFNmksQKGFFjNkzcpwXrMlXdQrgMhWdQXbflMXkKTznDqmcClBjZCHfmdkPWGB"
+              class="gmail">
+              <i class="fas fa-envelope"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3>QUICK LINKS</h3>
+          <ul>
+            <li><a href="#" onclick="openModal('booking')">Booking Guide</a></li>
+            <li><a href="#" onclick="openModal('panel')">My Panel</a></li>
+            <li><a href="#" onclick="openModal('story')">Our Story</a></li>
+            <li><a href="#" onclick="openModal('updates')">Latest Updates</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div>
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#" onclick="openModal('agreement')">User Agreement</a></li>
+            <li><a href="#" onclick="openModal('protection')">Data Protection</a></li>
+            <li><a href="#" onclick="openModal('rules')">Booking Rules</a></li>
+            <li><a href="#" onclick="openModal('payment')">Payment Information</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h3>CONTACT US</h3>
+          <ul class="contact-info">
+            <li>✉️ rod02labitad@gmail.com</li>
+            <li>
+              📍 Tubaran, Tubod
+                 Lanao Del Norte
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Dinktøpia. All rights reserved.</p>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="home.js"></script>
+  <script src="common.js"></script>
+
+</body>
+</html>

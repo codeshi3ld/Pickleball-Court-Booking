@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Page Title -->
+  <title>Dinktøpia</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+
+  <!-- START: EXTERNAL LIBRARIES -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/css/intlTelInput.css" />
+
+
+  <!-- HEADER SECTION -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+
+        <!-- Logo -->
+        <a href="home.html" class="logo">
+          Dinktøpia
+        </a>
+
+        <!-- Hamburger Button -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <!-- Menu -->
+        <div class="menu" id="menu">
+          <a href="performancestats.html">Performance Stats</a>
+          <a href="comingsoon.html">List Your Venue</a>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right-links">
+          <a href="comingsoon.html" class="btn">Sign In</a>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- START: MAIN CONTAINER -->
+
+  <div class="registration-container">
+
+    <!--  START: BOOKING SUMMARY SECTION -->
+
+    <div class="card summary">
+
+      <h3>Booking Details</h3>
+
+      <div class="summary-item">
+        <div>
+          <strong id="venueName">Smash Court Pickle Zone</strong>
+          <small id="bookingDate">Loading date...</small>
+        </div>
+      </div>
+
+      <div class="booking-scroll">
+        <div id="bookingDetails">
+          <!-- <div>Booking 1</div>
+    <div>Booking 2</div>
+    <div>Booking 3</div>
+    <div>Booking 4</div>
+    <div>Booking 5</div>
+    <div>Booking 6</div> -->
+        </div>
+      </div>
+
+      <div class="total">
+        <span>Total</span>
+        <span id="totalPrice">₱199.00</span>
+      </div>
+    </div>
+
+    <!--   START: FORM SECTION -->
+    <div class="card form-section">
+
+      <div class="title">
+        <h1>Review & Confirm Booking</h1>
+        <p>Review your booking details and enter your information</p>
+      </div>
+
+      <!-- FULL NAME -->
+      <div class="form-group">
+        <label>Full Name <span class="required">*</span></label>
+
+        <div class="name-fields">
+          <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First Name" />
+          <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name" />
+        </div>
+
+        <small id="nameError" class="error-message"></small>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" id="email" class="form-control" placeholder="example@gmail.com" />
+        <small id="emailError" class="error-message"></small>
+      </div>
+
+      <!-- PHONE -->
+      <div class="form-group">
+        <label>Phone Number <span class="required">*</span></label>
+        <input type="tel" id="phone" class="form-control" />
+        <small id="phoneError" class="error-message"></small>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="payment-box">
+
+        <div class="payment-header">
+          <strong>GCash</strong>
+          <span class="badge-primary">Primary</span>
+        </div>
+
+        <div class="payment-content">
+          <div class="payment-row">
+            <span>Account Name</span>
+            <strong>R#@dcil</strong>
+          </div>
+
+          <div class="payment-row">
+            <span>Mobile Number</span>
+            <strong>09171779736</strong>
+          </div>
+
+          <div class="qr-box">
+            <p>Scan QR Code</p>
+            <img src="images/gcash.jpg" alt="GCash QR Code" />
+          </div>
+        </div>
+
+        <div class="payment-header">
+          <strong>Gotyme</strong>
+          <span class="badge-secondary">Secondary</span>
+        </div>
+
+        <div class="payment-content">
+          <div class="payment-row">
+            <span>Account Name</span>
+            <strong>R#@dcil</strong>
+          </div>
+
+          <div class="payment-row">
+            <span>Mobile Number</span>
+            <strong>09171779736</strong>
+          </div>
+
+          <div class="qr-box">
+            <p>Scan QR Code</p>
+            <img src="images/gotyme.jpg" alt="GCotyme QR Code" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RECEIPT UPLOAD -->
+      <div class="upload-box">
+        <div class="upload-area">
+
+          <h3 class="upload-title">
+            Upload Receipt Screenshot <span class="required">*</span>
+          </h3>
+
+          <label for="paymentScreenshot" class="custom-file-btn">
+            Choose File
+          </label>
+
+          <input type="file" id="paymentScreenshot" accept="image/png, image/jpeg" hidden />
+
+          <span id="file-name">No file chosen</span>
+          <span id="error-msg" class="error-msg"></span>
+
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <button class="submit-btn" onclick="submitBooking()">
+        Complete Booking
+      </button>
+
+      <!-- <button class="submit-btn" onclick="goToWaiver()">
+      Complete Booking
+    </button> -->
+
+    </div>
+  </div>
+
+ <!-- =========================
+       FOOTER SECTION
+  ========================== -->
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <!-- Footer About -->
+        <div class="footer-about">
+
+          <div class="footer-logo">
+            <div class="logo-icon">🏆</div>
+            <h2>Dinktøpia</h2>
+          </div>
+
+          <p>
+            The Philippines’ trusted platform for seamless
+            sports venue bookings making court reservations
+            faster easier and more convenient for everyone.
+          </p>
+
+          <div class="socials">
+
+            <a href="https://www.facebook.com/jaztene08ol" target="_blank" class="fb">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@rodcil?_r=1&_d=secCgYIASAHKAESPgo8UAjsO3r%2FC%2BWbNdrq1%2FkiEicRn5uBVjI7gT1kXtFDWeToFxL3RiJAgAJxI192Im2DhPDmbUwr4ACwY0FNGgA%3D&_svg=1&checksum=2a391c45753318640acb84fa9011d2f11e31b12d9527c4c8a997a02c0bf1f354&item_author_type=2&reflow_sign_scene=7&rgssign=8.1.HItNQMnZQ48iMxWjp5Ku4w&sec_uid=MS4wLjABAAAAyTiHe16VCj5_s7b8kHk-SCJ31KpTGuiBToXhYA7tOQrbqHjQZ7RkQ-9DB6mmMRaM&sec_user_id=MS4wLjABAAAAkxxpNTupz3dKQOMQ0dN0WQOtUHarXhE6lHypOLm4kw4htVw3ws0dB0r4fgXY7iKX&share_app_id=1180&share_author_id=6951373389303022593&share_link_id=675eef15-88ef-48f7-8709-95bdafb4f319&share_region=PH&share_scene=1&sharer_language=en&social_share_type=5&source=h5_t&timestamp=1779100248&u_code=el4069a17332h8&ug_btm=b6880%2Cb5836&ugbiz_name=ACCOUNT&user_id=7520538965171684359&utm_campaign=client_share&utm_medium=android&utm_source=copy"
+              target="_blank" class="tiktok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+
+            <a href="https://www.instagram.com/onlyheavenknows20/" target="_blank" class="ig">
+              <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="https://mail.google.com/mail/u/0/#inbox?compose=prDfqJrXdLQmQDZZZqtKFlTrRsWncVPsXVRNfLgXsgDrVKPrNGKpFPWCfSNFpfgstmZlJcvGFRHwkMcwjxXTZkTgXxHFNmksQKGFFjNkzcpwXrMlXdQrgMhWdQXbflMXkKTznDqmcClBjZCHfmdkPWGB"
+              class="gmail">
+              <i class="fas fa-envelope"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3>QUICK LINKS</h3>
+          <ul>
+            <li><a href="#" onclick="openModal('booking')">Booking Guide</a></li>
+            <li><a href="#" onclick="openModal('panel')">My Panel</a></li>
+            <li><a href="#" onclick="openModal('story')">Our Story</a></li>
+            <li><a href="#" onclick="openModal('updates')">Latest Updates</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal Links -->
+        <div>
+          <h3>LEGAL</h3>
+          <ul>
+            <li><a href="#" onclick="openModal('agreement')">User Agreement</a></li>
+            <li><a href="#" onclick="openModal('protection')">Data Protection</a></li>
+            <li><a href="#" onclick="openModal('rules')">Booking Rules</a></li>
+            <li><a href="#" onclick="openModal('payment')">Payment Information</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h3>CONTACT US</h3>
+          <ul class="contact-info">
+            <li>✉️ rod02labitad@gmail.com</li>
+            <li>
+              📍 Tubaran, Tubod
+                 Lanao Del Norte
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Dinktøpia. All rights reserved.</p>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <!--   START: EXTERNAL JAVASCRIPT FILES -->
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.0/build/js/intlTelInput.min.js"></script>
+  <script src="registration.js"></script>
+  <script src="common.js"></script>
+
+</body>
+
+</html>
