@@ -1,7 +1,7 @@
-const nodemailer = require("nodemailer");
+const mail = require("nodemailer");
 const fs = require("fs");
 
-const transporter = nodemailer.createTransport({
+const smtp = mail.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
@@ -9,53 +9,39 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  family: 4, // FORCE IPv4 (fix Render connection issue)
-  connectionTimeout: 10000,
+  family: 4,
 });
 
-async function sendBookingEmail(to, data) {
+async function sendMail(to, info) {
   try {
-    await transporter.sendMail({
-      from: `"Dinktøpia Booking Confirmation" <${process.env.EMAIL_USER}>`,
-      to: to,
+    await smtp.sendMail({
+      from: process.env.EMAIL_USER,
+      to,
       bcc: process.env.ADMIN_EMAIL,
-
-      subject: "🎾 Booking Confirmation",
+      subject: "Booking Confirmed",
 
       html: `
-        <div style="font-family: Arial; padding: 10px;">
-          <h2>Booking Confirmed 🎉</h2>
-
-          <p>Hi <b>${data.name}</b>,</p>
-
-          <p>Your booking has been successfully reserved.</p>
-
-          <h3>Booking Details:</h3>
-          <ul>
-            <li><b>Date:</b> ${data.date}</li>
-            <li><b>Time:</b> ${data.time}</li>
-            <li><b>Court:</b> ${data.court}</li>
-          </ul>
-
-          <p>Thank you for booking with us 🎾</p>
-        </div>
+        <h2>Booking Confirmed</h2>
+        <p>Name: ${info.name}</p>
+        <p>Date: ${info.date}</p>
+        <p>Time: ${info.time}</p>
+        <p>Court: ${info.court}</p>
       `,
 
-      // 📸 FIXED SCREENSHOT ATTACHMENT
-      attachments: data.screenshot
+      attachments: info.screenshot
         ? [
             {
-              filename: "payment-screenshot.jpg",
-              content: fs.readFileSync(data.screenshot),
+              filename: "payment.jpg",
+              content: fs.readFileSync(info.screenshot),
             },
           ]
         : [],
     });
 
-    console.log("Email sent ✔");
-  } catch (error) {
-    console.error("Email error ❌", error);
+    console.log("sent");
+  } catch (e) {
+    console.error(e);
   }
 }
 
-module.exports = sendBookingEmail;
+module.exports = sendMail;
